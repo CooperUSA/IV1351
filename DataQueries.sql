@@ -1,4 +1,3 @@
--- \i 'C:/Users/Samuel Sendek/Desktop/Skola/2Per2/IV1351 Datalagring/Project/Del 2/LogicalAndPhysicalModel.sql'
 INSERT INTO person (first_name, last_name, phone_number, email, person_number, street, zip,city)
 VALUES
 
@@ -314,8 +313,3 @@ VALUES
 ((SELECT id FROM available_instruments WHERE id = 8),
     (SELECT id FROM person WHERE phone_number = '044-418-18-36'),
     '2022-09-14');
-
-
-
-
-
