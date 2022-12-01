@@ -7,8 +7,7 @@ FROM instructor
 JOIN 
     (SELECT id, first_name, last_name FROM person) AS p ON p.id = person_id 
 JOIN 
-    (SELECT DISTINCT instructor_id, COUNT(*) 
-        AS given_lessons 
+    (SELECT DISTINCT instructor_id, COUNT(*) AS given_lessons 
         FROM booking
         WHERE EXTRACT(month FROM booking.booking_date) = EXTRACT(month FROM CURRENT_DATE)
         GROUP BY instructor_id) 
