@@ -21,4 +21,4 @@ JOIN
     AS "date"
     ON "date".instructor_id = person_id
 WHERE inst.given_lessons >= 1 -- <--X
-ORDER BY inst.given_lessons ASC;
+ORDER BY inst.given_lessons DESC;
