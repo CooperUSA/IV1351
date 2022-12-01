@@ -2,7 +2,8 @@
 
 SELECT DISTINCT 
     EXTRACT(month FROM CURRENT_DATE) AS "month", 
-    CONCAT(p.first_name, ' ', p.last_name) as "name", inst.given_lessons
+    CONCAT(p.first_name, ' ', p.last_name) as "name", 
+    inst.given_lessons
 FROM instructor
 JOIN 
     (SELECT id, first_name, last_name FROM person) AS p ON p.id = person_id 
