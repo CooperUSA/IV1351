@@ -12,7 +12,7 @@ JOIN
         FROM booking
         WHERE EXTRACT(month FROM booking.booking_date) = EXTRACT(month FROM CURRENT_DATE)
         GROUP BY instructor_id) 
-    AS inst
+        AS inst
     ON inst.instructor_id = person_id
 JOIN 
     (SELECT instructor_id, booking_date 
