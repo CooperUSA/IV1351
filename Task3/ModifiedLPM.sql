@@ -181,7 +181,7 @@ SELECT
     (SELECT COUNT(*)*3 FROM (SELECT COUNT(*) FROM student GROUP BY family_id HAVING COUNT(*) = 3) AS foo) AS students_with_2_siblings;
     
     
-CREATE VIEW instructors_lesson_curr_month AS
+CREATE MATERIALIZED VIEW instructors_lesson_curr_month AS
 SELECT DISTINCT 
     EXTRACT(month FROM CURRENT_DATE) AS "month", 
     CONCAT(p.first_name, ' ', p.last_name) as "name", inst.given_lessons
