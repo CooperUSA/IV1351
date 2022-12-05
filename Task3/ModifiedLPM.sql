@@ -160,14 +160,14 @@ ALTER TABLE ensemble ADD CONSTRAINT FK_ensemble_0 FOREIGN KEY (group_lesson_id) 
 
 
 
-CREATE VIEW num_of_siblings AS
+CREATE MATERIALIZED VIEW num_of_siblings AS
 SELECT 
     (SELECT COUNT(*) FROM (SELECT COUNT(*) FROM student GROUP BY family_id HAVING COUNT(*) = 1) AS foo) AS students_with_0_siblings, 
     (SELECT COUNT(*)*2 FROM (SELECT COUNT(*) FROM student GROUP BY family_id HAVING COUNT(*) = 2) AS foo) AS students_with_1_sibling,  
     (SELECT COUNT(*)*3 FROM (SELECT COUNT(*) FROM student GROUP BY family_id HAVING COUNT(*) = 3) AS foo) AS students_with_2_siblings;
 
 
-CREATE VIEW num_of_lessons_2022 AS
+CREATE MATERIALIZED VIEW num_of_lessons_2022 AS
 SELECT 
     EXTRACT(MONTH FROM booking.booking_date) AS month, 
     COUNT(*) AS all_lessons, 
@@ -181,7 +181,7 @@ WHERE EXTRACT(YEAR FROM booking.booking_date) = '2022'      --Change year here
 GROUP BY month;
 
 
-CREATE VIEW instructors_lesson_curr_month AS
+CREATE MATERIALIZED VIEW instructors_lesson_curr_month AS
 SELECT DISTINCT 
     EXTRACT(month FROM CURRENT_DATE) AS "month", 
     CONCAT(p.first_name, ' ', p.last_name) as "name", inst.given_lessons
@@ -206,7 +206,7 @@ WHERE inst.given_lessons >= 1 -- <--X
 ORDER BY inst.given_lessons ASC;
 
 
-CREATE VIEW ensembles_next_week AS
+CREATE MATERIALIZED VIEW ensembles_next_week AS
 SELECT 
     nextweek.booking_date, 
     genre, 
