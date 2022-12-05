@@ -160,26 +160,6 @@ ALTER TABLE ensemble ADD CONSTRAINT FK_ensemble_0 FOREIGN KEY (group_lesson_id) 
 
 
 
-CREATE VIEW all_students AS
-SELECT id,first_name,last_name 
-FROM person 
-INNER JOIN student ON person.id = student.person_id;
-
-
-CREATE VIEW instructor_plays AS
-SELECT first_name, last_name, instrument 
-FROM person 
-RIGHT JOIN instructor ON person.id = instructor.person_id 
-    LEFT JOIN instructor_known_instrument ON person.id = instructor_known_instrument.instructor_id;
-
-
-CREATE VIEW all_lessons AS
-SELECT id, instructor_id, payment_id, locale, booking_date, start_time, end_time, difficulty, instrument, available_positions, min_students, genre 
-FROM booking 
-LEFT JOIN group_lesson ON booking.id = group_lesson.booking_id 
-    LEFT JOIN ensemble ON booking.id = ensemble.group_lesson_id;
-
-
 CREATE VIEW num_of_siblings AS
 SELECT 
     (SELECT COUNT(*) FROM (SELECT COUNT(*) FROM student GROUP BY family_id HAVING COUNT(*) = 1) AS foo) AS students_with_0_siblings, 
