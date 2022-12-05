@@ -206,7 +206,7 @@ WHERE inst.given_lessons >= 1 -- <--X
 ORDER BY inst.given_lessons ASC;
 
 
-CREATE VIEW ensembles_next_week AS
+CREATE MATERIALIZED VIEW ensembles_next_week AS
 SELECT 
     nextweek.booking_date, 
     genre, 
