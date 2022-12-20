@@ -22,9 +22,9 @@ CREATE TABLE booking (
  end_time TIME(0) NOT NULL,
  difficulty GRADE NOT NULL,
  instrument VARCHAR(50),
- available_positions INT NOT NULL,
- min_students INT NOT NULL,
- genre VARCHAR(50) NOT NULL,
+ available_positions INT,
+ min_students INT,
+ genre VARCHAR(50),
  lesson_price INT NOT NULL,
  siblingDiscount DECIMAL(2,2) NOT NULL
 );
